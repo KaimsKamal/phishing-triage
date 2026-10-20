@@ -19,6 +19,8 @@ BODIES = [
     "Reglez les frais pour recevoir votre colis.",
     "Ne laissez pas passer votre bon d'achat.",
     "Cliquez pour recevoir votre remboursement.",
+    "Reglez sous 48h pour eviter des frais.",
+    "Message urgent : confirmez votre identite.",
 ]
 AUTH_RESULTS = [
     "spf=fail; dkim=none; dmarc=fail",
