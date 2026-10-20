@@ -3,6 +3,7 @@ from pathlib import Path
 from phishtriage.parser import parse_eml
 from phishtriage.rules import (
     auth_failed,
+    combined_score,
     reply_to_mismatch,
     run_rules,
     shortened_url,
@@ -10,7 +11,6 @@ from phishtriage.rules import (
     urgency_language,
     verdict,
 )
-
 
 def test_reply_to_mismatch_detected():
     mail = parse_eml(Path("data/samples/phishing_01.eml"))
@@ -151,3 +151,13 @@ def test_legit_04_is_a_false_positive_on_urgency():
 def test_legit_05_accent_blind_spot():
     mail = parse_eml(Path("data/samples/legit_05.eml"))
     assert run_rules(mail) == []
+
+
+def test_combined_score_rescues_phishing_05():
+    assert combined_score(0, 0.55) == 28
+    assert verdict(combined_score(0, 0.55)) == "suspicious"
+
+
+def test_combined_score_keeps_legit_low():
+    assert combined_score(0, 0.1) == 5
+    assert verdict(combined_score(0, 0.1)) == "legit"

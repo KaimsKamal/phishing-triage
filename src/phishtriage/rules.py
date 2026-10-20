@@ -102,3 +102,7 @@ def verdict(score: int) -> str:
     if score >= 20:
         return "suspicious"
     return "legit"
+
+
+def combined_score(rule_points: int, proba: float) -> int:
+    return rule_points + round(proba * 50)
