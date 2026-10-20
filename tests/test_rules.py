@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from phishtriage.parser import parse_eml
-from phishtriage.rules import reply_to_mismatch, shortened_url,  urgency_language
+from phishtriage.rules import auth_failed, reply_to_mismatch, shortened_url,  urgency_language
 
 
 
@@ -39,3 +39,15 @@ def test_urgency_language_detected():
 def test_no_urgency_in_legit_mail():
     mail = parse_eml(Path("data/samples/legit_01.eml"))
     assert urgency_language(mail) is None
+
+
+def test_auth_failed_detected():
+       mail = parse_eml(Path("data/samples/phishing_01.eml"))
+       finding = auth_failed(mail)
+       assert finding is not None
+       assert finding.rule_id == "auth_failed"
+
+
+def test_no_auth_failed_in_legit_mail():
+       mail = parse_eml(Path("data/samples/legit_01.eml"))
+       assert auth_failed(mail) is None

@@ -63,3 +63,14 @@ def urgency_language(mail: ParsedEmail) -> Finding | None:
                 explanation=f"Urgency wording detected: {word}",
             )
     return None
+
+
+def auth_failed(mail: ParsedEmail) -> Finding | None:
+    results = mail.auth_results.lower()
+    if "fail" in results:
+        return Finding(
+            rule_id="auth_failed",
+            points=25,
+            explanation="SPF, DKIM or DMARC check failed",
+        )
+    return None
