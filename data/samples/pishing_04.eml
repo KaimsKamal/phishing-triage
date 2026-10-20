@@ -1,0 +1,8 @@
+From: "Sécurité Compte" <no-reply@compte-securite-alerte.example>
+Reply-To: <support@autre-domaine.example>
+To: victime@example.org
+Subject: Connexion suspecte détectée depuis un nouvel appareil
+Authentication-Results: mx.example.org; spf=fail; dkim=fail; dmarc=fail header.from=compte-securite-alerte.example
+Content-Type: text/plain; charset=utf-8
+
+Quelqu'un s'est connecté à votre compte. Si ce n'est pas vous, réinitialisez votre mot de passe immédiatement : http://reset-compte.example/login

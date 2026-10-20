@@ -87,9 +87,19 @@ def test_verdict_suspicious():
 def test_verdict_legit():
     assert verdict(0) == "legit"
 
+
 def test_verdict_at_phishing_threshold():
     assert verdict(45) == "phishing"
 
 
 def test_verdict_just_below_threshold():
     assert verdict(44) == "suspicious"
+
+
+def test_phishing_02_findings():
+    mail = parse_eml(Path("data/samples/phishing_02.eml"))
+    findings = run_rules(mail)
+    ids = {f.rule_id for f in findings}
+    assert ids == {"reply_to_mismatch", "urgency_language", "auth_failed"}
+    assert "shortened_url" not in ids
+    assert verdict(total_score(findings)) == "phishing"

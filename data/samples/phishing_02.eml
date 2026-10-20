@@ -1,0 +1,8 @@
+From: "Suivi Livraison" <notification@colis-suivi-express.example>
+Reply-To: <reclamations@autre-domaine.example>
+To: victime@example.org
+Subject: Colis en attente : frais de 1,99 € à régler
+Authentication-Results: mx.example.org; spf=fail smtp.mailfrom=colis-suivi-express.example; dkim=none; dmarc=fail header.from=colis-suivi-express.example
+Content-Type: text/plain; charset=utf-8
+
+Votre colis n'a pas pu être livré. Réglez les frais sous 48h sinon il sera retourné : http://tinyurl.example/xxxx

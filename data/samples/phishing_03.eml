@@ -1,0 +1,8 @@
+From: "Direction Générale Finances" <remboursement@impots-gouv-remb.example>
+Reply-To: <dossier@autre-domaine.example>
+To: victime@example.org
+Subject: Vous avez droit à un remboursement de 387,40 €
+Authentication-Results: mx.example.org; spf=softfail; dkim=none; dmarc=fail header.from=impots-gouv-remb.example
+Content-Type: text/plain; charset=utf-8
+
+Cher contribuable, un trop-perçu est disponible. Confirmez vos coordonnées bancaires ici : http://remb-impots.example/formulaire
