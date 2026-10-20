@@ -86,3 +86,10 @@ def run_rules(mail: ParsedEmail) -> list[Finding]:
         if finding is not None:
             findings.append(finding)
     return findings
+
+
+def total_score(findings: list[Finding]) -> int:
+    total = 0
+    for finding in findings:
+        total = total + finding.points
+    return total
