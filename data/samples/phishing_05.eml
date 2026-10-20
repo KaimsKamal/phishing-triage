@@ -1,0 +1,6 @@
+From: "Sécurité Compte" <no-reply@compte-securite-alerte.example>
+To: victime@example.org
+Subject: Connexion suspecte détectée depuis un nouvel appareil
+Content-Type: text/plain; charset=utf-8
+
+Quelqu'un s'est connecté à votre compte. Si ce n'est pas vous, réinitialisez votre mot de passe  : http://reset-compte.example/login

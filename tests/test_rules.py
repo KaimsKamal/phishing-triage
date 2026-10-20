@@ -115,3 +115,10 @@ def test_phishing_04_is_phishing():
     mail = parse_eml(Path("data/samples/phishing_04.eml"))
     findings = run_rules(mail)
     assert verdict(total_score(findings)) == "phishing"
+
+
+def test_phishing_05_is_missed_by_rules():
+    mail = parse_eml(Path("data/samples/phishing_05.eml"))
+    assert mail.subject != ""
+    assert run_rules(mail) == []
+    assert verdict(total_score(run_rules(mail))) == "legit"
