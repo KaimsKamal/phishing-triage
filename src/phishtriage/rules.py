@@ -6,6 +6,7 @@ from email.utils import parseaddr
 from phishtriage.parser import ParsedEmail
 from urllib.parse import urlparse
 
+
 @dataclass
 class Finding:
     rule_id: str
@@ -45,5 +46,20 @@ def shortened_url(mail: ParsedEmail) -> Finding | None:
                 rule_id="shortened_url",
                 points=10,
                 explanation=f"Shortened URL detected: {domain}",
+            )
+    return None
+
+
+URGENCY_WORDS = {"urgent", "immédiatement", "suspendu"}
+
+
+def urgency_language(mail: ParsedEmail) -> Finding | None:
+    text = mail.body_text.lower().split()
+    for word in text:
+        if word in URGENCY_WORDS:
+            return Finding(
+                rule_id="urgency_language",
+                points=10,
+                explanation=f"Urgency wording detected: {word}",
             )
     return None
