@@ -33,6 +33,6 @@ def test_cli_json_output():
         env={"PYTHONPATH": "src"},
     )
     data = json.loads(result.stdout)
-    assert data["score"] == 55
+    assert data["rule_points"] == 55
     assert data["verdict"] == "phishing"
     assert len(data["findings"]) == 4
