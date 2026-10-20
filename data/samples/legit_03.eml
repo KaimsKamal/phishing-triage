@@ -1,0 +1,19 @@
+From: "Newsletter Asso" <newsletter@exemple-asso.example>
+Reply-To: <retours@prestataire-envoi.example>
+To: membre@example.org
+Subject: Newsletter d'octobre : nos actualites
+Authentication-Results: mx.example.org; spf=pass smtp.mailfrom=exemple-asso.example; dkim=pass; dmarc=pass header.from=exemple-asso.example
+List-Unsubscribe: <mailto:desinscription@exemple-asso.example>
+Content-Type: text/plain; charset=utf-8
+
+Bonjour,
+
+Voici les nouvelles du mois :
+- Reunion mensuelle jeudi a 18h
+- Atelier benevoles le 5 novembre : https://www.exemple-asso.example/atelier
+- Nouveau bureau : https://www.exemple-asso.example/equipe
+
+Pour vous desinscrire, repondez a ce mail avec "STOP".
+
+A bientot,
+L'equipe

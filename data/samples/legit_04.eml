@@ -1,0 +1,8 @@
+From: "Equipe Projet" <contact@exemple-asso.example>
+Reply-To: <contact@exemple-asso.example>
+To: membre@example.org
+Subject: Inscription a l'atelier de novembre
+Authentication-Results: mx.example.org; spf=pass smtp.mailfrom=exemple-asso.example; dkim=pass; dmarc=pass header.from=exemple-asso.example
+Content-Type: text/plain; charset=utf-8
+
+Bonjour, les inscriptions a l'atelier du 5 novembre sont ouvertes. Merci de nous confirmer votre presence sous 48h en repondant simplement a ce mail, afin que nous puissions prevoir le nombre de chaises. A bientot.

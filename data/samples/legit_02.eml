@@ -1,0 +1,8 @@
+From: "Equipe Projet" <contact@exemple-asso.example>
+Reply-To: <contact@exemple-asso.example>
+To: membre@example.org
+Subject: Reunion de jeudi - changement de salle urgent
+Authentication-Results: mx.example.org; spf=pass smtp.mailfrom=exemple-asso.example; dkim=pass; dmarc=pass header.from=exemple-asso.example
+Content-Type: text/plain; charset=utf-8
+
+Bonjour, message urgent : la reunion de jeudi a 18h change de salle. Elle aura lieu en salle B au lieu de la salle A. Merci de prevenir les personnes concernees. A bientot.

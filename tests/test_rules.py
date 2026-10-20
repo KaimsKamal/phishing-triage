@@ -122,3 +122,32 @@ def test_phishing_05_is_missed_by_rules():
     assert mail.subject != ""
     assert run_rules(mail) == []
     assert verdict(total_score(run_rules(mail))) == "legit"
+
+
+def test_legit_samples_stay_legit():
+    for name in ["legit_01", "legit_02", "legit_03", "legit_04", "legit_05"]:
+        mail = parse_eml(Path(f"data/samples/{name}.eml"))
+        assert verdict(total_score(run_rules(mail))) == "legit"
+
+
+def test_legit_02_is_a_false_positive_on_urgency():
+    mail = parse_eml(Path("data/samples/legit_02.eml"))
+    ids = {f.rule_id for f in run_rules(mail)}
+    assert ids == {"urgency_language"}
+
+
+def test_legit_03_is_a_false_positive_on_reply_to():
+    mail = parse_eml(Path("data/samples/legit_03.eml"))
+    ids = {f.rule_id for f in run_rules(mail)}
+    assert ids == {"reply_to_mismatch"}
+
+
+def test_legit_04_is_a_false_positive_on_urgency():
+    mail = parse_eml(Path("data/samples/legit_04.eml"))
+    ids = {f.rule_id for f in run_rules(mail)}
+    assert ids == {"urgency_language"}
+
+
+def test_legit_05_accent_blind_spot():
+    mail = parse_eml(Path("data/samples/legit_05.eml"))
+    assert run_rules(mail) == []

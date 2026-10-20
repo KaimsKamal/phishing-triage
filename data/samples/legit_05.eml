@@ -1,0 +1,8 @@
+From: "Equipe Projet" <contact@exemple-asso.example>
+Reply-To: <contact@exemple-asso.example>
+To: membre@example.org
+Subject: Reunion de jeudi - fin de la reunion
+Authentication-Results: mx.example.org; spf=pass smtp.mailfrom=exemple-asso.example; dkim=pass; dmarc=pass header.from=exemple-asso.example
+Content-Type: text/plain; charset=utf-8
+
+Bonjour, merci a tous pour votre presence jeudi. Le compte rendu a ete envoye immediatement apres la reunion, vous pouvez le consulter dans vos mails. N'hesitez pas a nous dire si quelque chose manque. A bientot.
