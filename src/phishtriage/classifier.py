@@ -34,14 +34,14 @@ def train_and_evaluate(texts: list[str], labels: list[int]):
 MODEL_PATH = Path("models/phishing_model.joblib")
 
 
-def train_and_save(folder: Path) -> None:
+def train_and_save(folder: Path, model_path: Path = MODEL_PATH) -> None:
     texts, labels = load_dataset(folder)
     model = make_pipeline(TfidfVectorizer(), LogisticRegression())
     model.fit(texts, labels)
-    MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
-    joblib.dump(model, MODEL_PATH)
+    model_path.parent.mkdir(parents=True, exist_ok=True)
+    joblib.dump(model, model_path)
 
 
-def predict_proba(subject: str, body: str) -> float:
-    model = joblib.load(MODEL_PATH)
+def predict_proba(subject: str, body: str, model_path: Path = MODEL_PATH) -> float:
+    model = joblib.load(model_path)
     return float(model.predict_proba([subject + " " + body])[0][1])
