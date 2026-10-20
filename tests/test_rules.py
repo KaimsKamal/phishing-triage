@@ -1,7 +1,8 @@
 from pathlib import Path
 
 from phishtriage.parser import parse_eml
-from phishtriage.rules import reply_to_mismatch
+from phishtriage.rules import reply_to_mismatch, shortened_url
+
 
 
 def test_reply_to_mismatch_detected():
@@ -14,3 +15,15 @@ def test_reply_to_mismatch_detected():
 def test_no_finding_when_same_domain():
     mail = parse_eml(Path("data/samples/legit_01.eml"))
     assert reply_to_mismatch(mail) is None
+
+
+def test_shortened_url_detected():
+    mail = parse_eml(Path("data/samples/phishing_01.eml"))
+    finding = shortened_url(mail)
+    assert finding is not None
+    assert finding.rule_id == "shortened_url"
+
+
+def test_no_shortened_url_in_legit_mail():
+    mail = parse_eml(Path("data/samples/legit_01.eml"))
+    assert shortened_url(mail) is None

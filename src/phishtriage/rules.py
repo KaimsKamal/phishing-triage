@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from email.utils import parseaddr
 
 from phishtriage.parser import ParsedEmail
-
+from urllib.parse import urlparse
 
 @dataclass
 class Finding:
@@ -31,4 +31,19 @@ def reply_to_mismatch(mail: ParsedEmail) -> Finding | None:
             points=10,
             explanation=f"Reply-To ({reply_domain}) differs from sender ({sender_domain})",
         )
+    return None
+
+
+SHORTENERS = {"bit.ly", "tinyurl.com", "t.co", "goo.gl"}
+
+
+def shortened_url(mail: ParsedEmail) -> Finding | None:
+    for url in mail.urls:
+        domain = urlparse(url).hostname
+        if domain in SHORTENERS:
+            return Finding(
+                rule_id="shortened_url",
+                points=10,
+                explanation=f"Shortened URL detected: {domain}",
+            )
     return None
