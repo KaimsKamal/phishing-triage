@@ -30,6 +30,20 @@ REPLY_TO_DOMAINS = ["autre-domaine.example", "collecte-infos.example", ""]
 
 OUTPUT_DIR = Path("data/generated")
 
+LEGIT_DOMAINS = ["exemple-asso.example", "mairie-ville.example", "club-sport.example", "reseau-pro.example"]
+LEGIT_SUBJECTS = [
+    "Compte rendu de la reunion",
+    "Programme de la semaine",
+    "Facture de novembre",
+    "Piece jointe de la reunion",
+]
+LEGIT_BODIES = [
+    "Bonjour, veuillez trouver ci-joint le compte rendu.",
+    "Voici le programme de la semaine.",
+    "Merci de traiter ces elements, c'est urgent.",
+    "Merci de confirmer votre presence sous 48h.",
+]
+
 
 def build_eml(domain, subject, body, auth, reply_domain):
     lines = [
@@ -57,6 +71,17 @@ def main() -> None:
         path = OUTPUT_DIR / f"gen_phishing_{i:02d}.eml"
         path.write_text(
             build_eml(domain, subject, body, auth, reply_domain),
+            encoding="utf-8",
+        )
+
+    for i in range(1, 11):
+        domain = random.choice(LEGIT_DOMAINS)
+        subject = random.choice(LEGIT_SUBJECTS)
+        body = random.choice(LEGIT_BODIES)
+        reply_domain = random.choice([domain, ""])
+        path = OUTPUT_DIR / f"gen_legit_{i:02d}.eml"
+        path.write_text(
+            build_eml(domain, subject, body, "spf=pass; dkim=pass; dmarc=pass", reply_domain),
             encoding="utf-8",
         )
 
