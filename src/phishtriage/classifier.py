@@ -1,3 +1,5 @@
+import joblib
+
 from pathlib import Path
 
 from phishtriage.parser import parse_eml
@@ -27,3 +29,19 @@ def train_and_evaluate(texts: list[str], labels: list[int]):
     predictions = model.predict(x_test)
     print(classification_report(y_test, predictions, zero_division=0))
     return model
+
+
+MODEL_PATH = Path("models/phishing_model.joblib")
+
+
+def train_and_save(folder: Path) -> None:
+    texts, labels = load_dataset(folder)
+    model = make_pipeline(TfidfVectorizer(), LogisticRegression())
+    model.fit(texts, labels)
+    MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
+    joblib.dump(model, MODEL_PATH)
+
+
+def predict_proba(subject: str, body: str) -> float:
+    model = joblib.load(MODEL_PATH)
+    return float(model.predict_proba([subject + " " + body])[0][1])
