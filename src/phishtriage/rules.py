@@ -74,3 +74,15 @@ def auth_failed(mail: ParsedEmail) -> Finding | None:
             explanation="SPF, DKIM or DMARC check failed",
         )
     return None
+
+
+RULES = [reply_to_mismatch, shortened_url, urgency_language, auth_failed]
+
+
+def run_rules(mail: ParsedEmail) -> list[Finding]:
+    findings = []
+    for rule in RULES:
+        finding = rule(mail)
+        if finding is not None:
+            findings.append(finding)
+    return findings
