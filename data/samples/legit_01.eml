@@ -1,0 +1,8 @@
+From: "Equipe Projet" <contact@exemple-asso.example>
+Reply-To: <contact@exemple-asso.example>
+To: membre@example.org
+Subject: Reunion de jeudi
+Authentication-Results: mx.example.org; spf=pass smtp.mailfrom=exemple-asso.example; dkim=pass; dmarc=pass header.from=exemple-asso.example
+Content-Type: text/plain; charset=utf-8
+
+Bonjour, la reunion est maintenue jeudi a 18h. A bientot.
