@@ -51,7 +51,7 @@ def shortened_url(mail: ParsedEmail) -> Finding | None:
     return None
 
 
-URGENCY_WORDS = {"urgent", "immédiatement", "suspendu","sous 48h", "sinon", "dernier rappel"}
+URGENCY_WORDS = ["urgent", "immédiatement", "suspendu","sous 48h", "sinon", "dernier rappel"]
 
 
 def urgency_language(mail: ParsedEmail) -> Finding | None:

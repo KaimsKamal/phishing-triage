@@ -103,3 +103,15 @@ def test_phishing_02_findings():
     assert ids == {"reply_to_mismatch", "urgency_language", "auth_failed"}
     assert "shortened_url" not in ids
     assert verdict(total_score(findings)) == "phishing"
+
+
+def test_phishing_03_is_only_suspicious():
+    mail = parse_eml(Path("data/samples/phishing_03.eml"))
+    findings = run_rules(mail)
+    assert verdict(total_score(findings)) == "suspicious"
+
+
+def test_phishing_04_is_phishing():
+    mail = parse_eml(Path("data/samples/phishing_04.eml"))
+    findings = run_rules(mail)
+    assert verdict(total_score(findings)) == "phishing"
