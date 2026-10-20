@@ -7,6 +7,7 @@ from phishtriage.parser import ParsedEmail
 from urllib.parse import urlparse
 
 
+
 @dataclass
 class Finding:
     rule_id: str
@@ -93,3 +94,11 @@ def total_score(findings: list[Finding]) -> int:
     for finding in findings:
         total = total + finding.points
     return total
+
+
+def verdict(score: int) -> str:
+    if score >= 45:
+        return "phishing"
+    if score >= 20:
+        return "suspicious"
+    return "legit"

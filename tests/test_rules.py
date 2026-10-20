@@ -1,8 +1,15 @@
 from pathlib import Path
 
 from phishtriage.parser import parse_eml
-from phishtriage.rules import auth_failed, reply_to_mismatch, shortened_url, total_score, urgency_language, run_rules
-
+from phishtriage.rules import (
+    auth_failed,
+    reply_to_mismatch,
+    run_rules,
+    shortened_url,
+    total_score,
+    urgency_language,
+    verdict,
+)
 
 
 def test_reply_to_mismatch_detected():
@@ -67,3 +74,22 @@ def test_run_rules_on_legit_mail():
 def test_total_score_on_phishing_mail():
     mail = parse_eml(Path("data/samples/phishing_01.eml"))
     assert total_score(run_rules(mail)) == 55
+
+
+def test_verdict_phishing():
+    assert verdict(55) == "phishing"
+
+
+def test_verdict_suspicious():
+    assert verdict(25) == "suspicious"
+
+
+def test_verdict_legit():
+    assert verdict(0) == "legit"
+
+def test_verdict_at_phishing_threshold():
+    assert verdict(45) == "phishing"
+
+
+def test_verdict_just_below_threshold():
+    assert verdict(44) == "suspicious"
