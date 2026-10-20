@@ -1,0 +1,8 @@
+From: "Support Banque" <alerte@secure-banque-verif.example>
+Reply-To: <collecte@autre-domaine.example>
+To: victime@example.org
+Subject: Action requise : compte suspendu sous 24h
+Authentication-Results: mx.example.org; spf=fail smtp.mailfrom=secure-banque-verif.example; dkim=none; dmarc=fail header.from=secure-banque-verif.example
+Content-Type: text/plain; charset=utf-8
+
+Votre compte sera suspendu. Cliquez immédiatement : http://bit.ly/abc123
